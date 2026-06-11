@@ -1,0 +1,36 @@
+
+Trabalho Dockerfile Tarefa
+
+Exercício – Aplicação Web Node.js com Docker
+
+Este exercício tem como objetivo consolidar os conhecimentos sobre o uso de contêineres Docker para empacotamento e distribuição de aplicações. A proposta é criar uma aplicação web simples em Node.js e executar a aplicação em um contêiner, garantindo portabilidade, reprodutibilidade e isolamento do ambiente de execução.
+Descrição das tarefas
+
+1.     Crie uma pasta de projeto chamada node_docker_app.
+
+2.     Desenvolva uma aplicação Node.js que execute um servidor web na porta 3000 e gere um arquivo data.json contendo o campo timedate com a data e hora local do sistema no formato JSON.
+
+3.     Crie um arquivo Dockerfile na raiz do projeto, definindo como a imagem da aplicação será construída e executada.
+
+4.     Elabore um arquivo README.md explicando o objetivo da aplicação, como construir a imagem Docker, como executar o contêiner e testar a aplicação.
+
+5.     Envie o projeto completo para um repositório Git pessoal (por exemplo, GitHub, GitLab ou Bitbucket).
+
+6.     Submeta no Moodle apenas o endereço (URL) do repositório contendo o código-fonte.
+
+Exemplo do conteúdo esperado do arquivo data.json:
+
+{
+  "timedate": "2025-11-05T10:43:00-03:00"
+}
+Critérios de avaliação
+
+·       Organização e estrutura do projeto.
+
+·       Funcionamento correto da aplicação.
+
+·       Clareza das instruções no README.md.
+
+·       Uso adequado do Dockerfile e boas práticas de contêinerização.
+
+·       Publicação correta no repositório Git.

@@ -8,9 +8,9 @@ git init
 git add README.md
 git commit -m "first commit"
 git branch -M main
-git remote add origin https://github.com/oviccenzo/trabalho_de_infraestrutura_distribuido_trabalho_de_docker_para_aplicao_a_web/.git
+git remote add origin https://github.com/oviccenzo/trabalho_de_infraestrutura_distribuido_trabalho_de_docker_para_aplicao_a_web.git
 git push -origin main
 
-git remote add origin https://github.com/oviccenzo/trabalho_de_infraestrutura_distribuido_trabalho_de_docker_para_aplicao_a_web/.git
+git remote add origin https://github.com/oviccenzo/trabalho_de_infraestrutura_distribuido_trabalho_de_docker_para_aplicao_a_web.git
 git branch -M main
 git push -u origin main

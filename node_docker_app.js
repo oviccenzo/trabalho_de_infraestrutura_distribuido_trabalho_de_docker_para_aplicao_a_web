@@ -1,30 +1,51 @@
 const http = require('http');
 const fs = require('fs');
+const path = require('path');
 
-const PORT = 3000;
+const port = 3000;
 
-const server = http.createServer((req, res) => {
-    // Configura o cabeçalho para responder como JSON
-    res.setHeader('Content-Type', 'application/json');
+// Função nativa para formatar a data no padrão ISO com timezone local
+function getLocalTime() {
+    const date = new Date();
+    const tzo = -date.getTimezoneOffset();
+    const dif = tzo >= 0 ? '+' : '-';
 
-    // Cria a data local no formato ISO (ajustada para o fuso horário)
-    const dataLocal = new Date();
-    const fusoHorarioOffset = dataLocal.getTimezoneOffset() * 60000;
-    const dataLocalAjustada = new Date(dataLocal.getTime() - fusoHorarioOffset);
-
-    // Monta o objeto JSON
-    const conteudoJson = {
-        timedate: dataLocalAjustada.toISOString().replace('Z', '-03:00') // Exemplo de formato pedido
+    const pad = (num) => {
+        const norm = Math.floor(Math.abs(num));
+        return (norm < 10 ? '0' : '') + norm;
     };
 
-    // Salva o arquivo data.json no disco do contêiner
-    fs.writeFileSync('data.json', JSON.stringify(conteudoJson, null, 2));
+    return date.getFullYear() +
+        '-' + pad(date.getMonth() + 1) +
+        '-' + pad(date.getDate()) +
+        'T' + pad(date.getHours()) +
+        ':' + pad(date.getMinutes()) +
+        ':' + pad(date.getSeconds()) +
+        dif + pad(tzo / 60) +
+        ':' + pad(tzo % 60);
+}
 
-    // Responde para o navegador
+const server = http.createServer((req, res) => {
+    // Monta o objeto JSON
+    const data = {
+        timedate: getLocalTime()
+    };
+
+    // Caminho para o arquivo data.json
+    const filePath = path.join(__dirname, 'data.json');
+
+    // Escreve o arquivo no disco
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+
+    // Responde à requisição web
     res.statusCode = 200;
-    res.end(JSON.stringify(conteudoJson, null, 2));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({
+        mensagem: "Arquivo data.json gerado com sucesso!",
+        conteudo: data
+    }));
 });
 
-server.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+server.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
 });

@@ -1,7 +1,7 @@
 <h1>Exercício – Aplicação Web Node.js com Docker
 
 
-Comando para clonar o repositorio do github:
+<h2>Comando para clonar o repositorio do github:
 
 echo "# trabalho_de_infraestrutura_distribuido_trabalho_de_docker_para_aplicao_a_web" >> README.md
 git init
